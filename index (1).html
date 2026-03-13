@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Sania ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Poppins',sans-serif;
+text-align:center;
+color:white;
+overflow:hidden;
+height:100vh;
+background:#1e1433;
+}
+
+/* romantic background */
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:url("https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2") center/cover no-repeat;
+filter:blur(14px) brightness(0.6);
+z-index:-2;
+}
+
+body::after{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(190,150,255,0.35);
+z-index:-1;
+}
+
+/* containers */
+
+.container{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
+max-width:480px;
+padding:20px;
+}
+
+/* text */
+
+h1,h2{
+font-family:'Great Vibes',cursive;
+}
+
+h1{font-size:52px;}
+h2{font-size:40px;}
+
+p{
+font-size:18px;
+margin-top:10px;
+line-height:1.6;
+}
+
+/* buttons */
+
+button{
+margin-top:25px;
+padding:14px 30px;
+border:none;
+border-radius:30px;
+font-size:16px;
+background:linear-gradient(45deg,#ff4da6,#ff6fd8);
+color:white;
+cursor:pointer;
+}
+
+button:active{
+transform:scale(0.95);
+}
+
+/* intro */
+
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+transition:opacity 1s;
+}
+
+.heartIntro{
+font-size:100px;
+animation:pulse 2s infinite alternate;
+}
+
+@keyframes pulse{
+from{transform:scale(1)}
+to{transform:scale(1.15)}
+}
+
+.handwriting{
+font-family:'Great Vibes',cursive;
+font-size:60px;
+opacity:0;
+animation:fadeIn 3s forwards;
+animation-delay:2s;
+}
+
+@keyframes fadeIn{
+to{opacity:1}
+}
+
+/* hearts floating */
+
+.floatHeart{
+position:absolute;
+font-size:20px;
+color:#ff4da6;
+animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(100vh);opacity:1}
+100%{transform:translateY(-10vh);opacity:0}
+}
+
+/* video */
+
+#videoPage{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+background:black;
+z-index:9999;
+}
+
+#player{
+width:100vw;
+height:100vh;
+}
+
+/* ending */
+
+#ending,#proposal,#final{
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
+max-width:480px;
+}
+
+/* heart explosion */
+
+@keyframes explode{
+0%{transform:scale(0.5);opacity:1}
+100%{transform:translateY(-200px) scale(2);opacity:0}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- intro -->
+
+<div id="intro">
+
+<div class="heartIntro">❤️</div>
+<div class="handwriting">Hi Sania</div>
+
+</div>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- page 1 -->
+
+<div class="container" id="page1" style="display:none">
+
+<h1>Hi Sania ❤️</h1>
+<p>I made something special for you…</p>
+
+<button onclick="nextPage()">Next</button>
+
+</div>
+
+<!-- page 2 -->
+
+<div class="container" id="page2" style="display:none">
+
+<h2>Have you found this card?</h2>
+
+<p>
+If yes, then you already opened something from my heart.
+<br><br>
+Before you read the letter completely,
+watch this first.
+</p>
+
+<button onclick="showEffort()">Yes ❤️</button>
+
+</div>
+
+<!-- effort -->
+
+<div class="container" id="effortPage" style="display:none">
+
+<h2>Before you watch this…</h2>
+
+<p>
+I put a lot of time and heart into making this.
+<br><br>
+So please watch it till the end…
+it would mean a lot to me ❤️
+</p>
+
+<button onclick="showVideo()">Play the video</button>
+
+</div>
+
+<!-- video -->
+
+<div id="videoPage">
+<div id="player"></div>
+</div>
+
+<!-- ending -->
+
+<div id="ending">
+
+<h2>Some moments stay forever…</h2>
+<p>Some people change everything.</p>
+<p>And some memories begin with you.</p>
+<p style="margin-top:20px;">— Akbar ❤️</p>
+
+</div>
+
+<!-- proposal -->
+
+<div id="proposal">
+
+<h2>Would you like to create more beautiful memories with me?</h2>
+
+<button onclick="openWhatsApp()">Yes ❤️</button>
+<button onclick="openWhatsApp()">Always ❤️</button>
+
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+
+let music=document.getElementById("music")
+let heartInterval
+let player
+
+/* intro transition */
+
+setTimeout(()=>{
+document.getElementById("intro").style.opacity="0"
+
+setTimeout(()=>{
+document.getElementById("intro").style.display="none"
+document.getElementById("page1").style.display="block"
+},1000)
+
+},4000)
+
+/* floating hearts */
+
+function startHearts(){
+
+heartInterval=setInterval(()=>{
+
+let heart=document.createElement("div")
+
+heart.className="floatHeart"
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"vw"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),8000)
+
+},300)
+
+}
+
+function nextPage(){
+
+document.getElementById("page1").style.display="none"
+document.getElementById("page2").style.display="block"
+
+music.volume=0.25
+music.play()
+
+startHearts()
+
+}
+
+function showEffort(){
+
+document.getElementById("page2").style.display="none"
+document.getElementById("effortPage").style.display="block"
+
+}
+
+/* youtube player */
+
+function onYouTubeIframeAPIReady(){
+
+player = new YT.Player('player',{
+height:'100%',
+width:'100%',
+videoId:'TR5P7W_of4Y',
+playerVars:{'autoplay':1,'rel':0},
+events:{'onStateChange':onPlayerStateChange}
+})
+
+}
+
+function showVideo(){
+
+document.getElementById("effortPage").style.display="none"
+document.getElementById("videoPage").style.display="block"
+
+clearInterval(heartInterval)
+
+music.pause()
+
+player.playVideo()
+
+}
+
+function onPlayerStateChange(event){
+
+if(event.data === YT.PlayerState.ENDED){
+
+document.getElementById("videoPage").style.display="none"
+document.getElementById("ending").style.display="block"
+
+setTimeout(()=>{
+
+document.getElementById("ending").style.display="none"
+document.getElementById("proposal").style.display="block"
+
+},4000)
+
+}
+
+}
+
+/* heart burst + whatsapp */
+
+function openWhatsApp(){
+
+for(let i=0;i<120;i++){
+
+let heart=document.createElement("div")
+
+heart.innerHTML="❤️"
+heart.style.position="fixed"
+heart.style.left=Math.random()*100+"vw"
+heart.style.top=Math.random()*100+"vh"
+heart.style.fontSize=(20+Math.random()*40)+"px"
+heart.style.animation="explode 2s ease-out forwards"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),2000)
+
+}
+
+setTimeout(()=>{
+
+let number="918341240300"
+let message="Lets go on another date ❤️"
+
+window.location.href=
+"https://wa.me/"+number+"?text="+encodeURIComponent(message)
+
+},1200)
+
+}
+
+</script>
+
+</body>
+</html>
